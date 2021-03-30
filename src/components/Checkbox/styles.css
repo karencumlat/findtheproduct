@@ -1,0 +1,29 @@
+input[type='checkbox'] {
+  display: none;
+}
+
+.checkbox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.checkbox-icon {
+  text-align: right;
+  padding: 0 0.5em;
+  font-size: 1.25em;
+}
+
+.checkbox-label.strike {
+  text-decoration: line-through;
+}
+
+.checkbox-label::first-letter {
+  text-transform: capitalize;
+}
+
+.checkbox .checked {
+  color: olivedrab;
+}
