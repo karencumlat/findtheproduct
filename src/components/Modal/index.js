@@ -19,7 +19,7 @@ function Modal(props) {
       <Button onClick={onClose} ghost className="modal--close-btn">
         <IoIosClose />
       </Button>
-      {children}
+      <div className="modal-content">{children}</div>
       <div className="modal-btn">
         <Button onClick={onClose} secondary fullWidth>
           {secondaryBtn || 'Cancel'}

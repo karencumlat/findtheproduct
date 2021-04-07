@@ -5,16 +5,17 @@ const StyledModal = styled.div`
   background: ${tokens.COLOR.WHITE};
   width: 90%;
   top: 50%;
-  transform: translate(0, -50%);
+  left: 50%;
+  transform: translate(-50%, -50%);
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   display: flex;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
 
   .modal--close-btn {
     position: absolute;
-    top: 0.25em;
-    right: 0.25em;
+    top: 0.5em;
+    right: 0.5em;
     padding: 0;
     font-size: 2em;
   }
@@ -23,7 +24,13 @@ const StyledModal = styled.div`
     margin: 1em;
   }
 
-  > * {
+  .modal-content {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .modal-content > * {
+    flex: 1;
     margin: 1em;
   }
 
