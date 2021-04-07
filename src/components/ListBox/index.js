@@ -6,16 +6,9 @@ import ListBoxOption from './ListBoxOption';
 import { AddIcon } from './styles.js';
 
 function ListBox(props) {
-  const { options } = props;
+  const { options, onClick } = props;
   const [addNewItem, setAddNewItem] = useState(false);
   const [newItem, setNewItem] = useState(false);
-
-  function addToList(e) {
-    const newItem = e.target.value;
-    console.log(`add to list: ${newItem}`);
-  }
-
-  console.log(addNewItem);
 
   return options.length < 1 ? (
     <>
@@ -32,8 +25,8 @@ function ListBox(props) {
       {options.map((option) => {
         return (
           <ListBoxOption
-            onClick={addToList}
-            option={option.item}
+            onClick={onClick}
+            option={option}
             key={option.item}
             sub={option.aisle}
           >
@@ -41,12 +34,12 @@ function ListBox(props) {
           </ListBoxOption>
         );
       })}
-      <ListBoxOption onClick={() => setAddNewItem(true)}>
+      {/* <ListBoxOption onClick={() => setAddNewItem(true)}>
         <AddIcon>
           <IoIosAddCircle />
         </AddIcon>{' '}
         Add New Item
-      </ListBoxOption>
+      </ListBoxOption> */}
     </>
   );
 }

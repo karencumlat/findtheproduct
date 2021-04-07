@@ -4,7 +4,7 @@ function ListBoxOption(props) {
   const { option, children, onClick } = props;
 
   return (
-    <StyledListOption onClick={onClick} value={option}>
+    <StyledListOption onClick={onClick} value={option.id}>
       {children ? children : option}
     </StyledListOption>
   );

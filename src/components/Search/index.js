@@ -9,7 +9,7 @@ import Button from '../Button';
 import TextInput from '../TextInput';
 
 function Search(props) {
-  const { items } = props;
+  const { items, onClick } = props;
 
   const searchRef = useRef();
 
@@ -63,7 +63,7 @@ function Search(props) {
 
       {onFocus === true ? (
         <StyledListBox>
-          <ListBox options={updateOptions()} />
+          <ListBox options={updateOptions()} onClick={onClick} />
         </StyledListBox>
       ) : null}
     </StyledSearch>

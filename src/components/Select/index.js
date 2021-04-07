@@ -1,18 +1,26 @@
 import StyledSelect from './styles';
 
 function Select(props) {
-  const { options, onChange } = props;
-
+  const { options, onChange, selectedItem } = props;
+  console.log(selectedItem);
   return options.length < 1 ? (
     ''
   ) : (
     <StyledSelect onChange={onChange}>
       {options.sort().map((item) => {
-        return (
-          <option key={item} value={item}>
-            {item}
-          </option>
-        );
+        if (item === selectedItem) {
+          return (
+            <option key={item} value={item} selected>
+              {item}
+            </option>
+          );
+        } else {
+          return (
+            <option key={item} value={item}>
+              {item}
+            </option>
+          );
+        }
       })}
     </StyledSelect>
   );

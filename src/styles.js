@@ -22,9 +22,12 @@ export const ProductTile = styled.div`
   }
 
   .add-new-item {
-    width: 90%;
-    position: fixed;
-    bottom: 1.5em;
+    width: 100%;
+    position: sticky;
+    bottom: 0;
+    padding: 0 0 1.5em;
+    background-color: ${tokens.COLOR.WHITE};
+    border: none;
   }
 `;
 

@@ -8,7 +8,6 @@ const StyledInput = styled.input`
   padding: 1em;
   background-color: ${tokens.COLOR.GRAY};
   border-bottom: ${tokens.COLOR.BLACK} 1px solid;
-  text-transform: capitalize;
 
   &:focus {
     outline: ${tokens.COLOR.GREEN} 2px solid;
