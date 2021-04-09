@@ -12,6 +12,11 @@ const StyledAuthyForm = styled.div`
 
   .authy-form {
     width: 100%;
+    height: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
     .authy-form--input > * {
       margin: 0 0 1rem 0;
@@ -27,7 +32,7 @@ const StyledAuthyForm = styled.div`
 
     .authy--illustration {
       width: 80%;
-      margin: 20% auto;
+      margin: 0 auto;
       display: block;
     }
 
@@ -58,9 +63,6 @@ const StyledAuthyForm = styled.div`
   }
 
   .authy--logout-btn {
-    ${'' /* position: absolute; */}
-    ${'' /* top: 0; */}
-    ${'' /* right: 0; */}
     font-size: 2em;
   }
 `;

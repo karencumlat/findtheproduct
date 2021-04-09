@@ -1,14 +1,15 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import * as tokens from './components/helpers/tokens';
 
 export const ProductTile = styled.div`
   .product-tile--item {
-    padding: 0.5em 1em;
+    padding: 0.5em 0;
     display: flex;
     margin: 0.5em 0;
     align-items: center;
 
     .product-tile--name {
+      margin: 0 0 0 1rem;
       flex: 2;
       text-transform: capitalize;
       display: flex;
