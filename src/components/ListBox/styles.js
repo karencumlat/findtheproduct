@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import * as tokens from '../helpers/tokens';
+import TOKENS from '../Tokens';
 
 export const AddIcon = styled.i`
-  color: ${tokens.COLOR.GREEN};
+  color: ${TOKENS.COLOR.GREEN};
   font-size: 1.2rem;
   display: flex;
   align-items: center;

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as tokens from './components/helpers/tokens';
+import TOKENS from './components/Tokens';
 
 export const ProductTile = styled.div`
   .product-tile--item {
@@ -17,7 +17,7 @@ export const ProductTile = styled.div`
 
       span {
         font-size: 0.75em;
-        color: ${tokens.COLOR.GRAY50};
+        color: ${TOKENS.COLOR.GRAY50};
       }
     }
   }
@@ -27,13 +27,13 @@ export const ProductTile = styled.div`
     position: sticky;
     bottom: 0;
     padding: 0 0 1.5em;
-    background-color: ${tokens.COLOR.WHITE};
+    background-color: ${TOKENS.COLOR.WHITE};
     border: none;
   }
 `;
 
 export const AddNewItem = styled.div`
-  background: ${tokens.COLOR.WHITE};
+  background: ${TOKENS.COLOR.WHITE};
   width: 90%;
   top: 50%;
   transform: translate(0, -50%);

@@ -3,7 +3,7 @@ import firebase from './firebase';
 import { v4 as uuidv4 } from 'uuid';
 import { IoMdTrash, IoMdCreate } from 'react-icons/io';
 
-import aisles from './components/helpers/aisles';
+import aisles from './helpers/aisles';
 
 import { AuthContext } from './authy/Auth';
 

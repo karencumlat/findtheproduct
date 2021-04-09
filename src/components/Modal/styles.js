@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import * as tokens from '../helpers/tokens';
+import TOKENS from '../Tokens';
 
 const StyledModal = styled.div`
-  background: ${tokens.COLOR.WHITE};
+  background: ${TOKENS.COLOR.WHITE};
   width: 90%;
   top: 50%;
   left: 50%;

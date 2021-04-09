@@ -3,7 +3,7 @@ import { IoIosRadioButtonOff, IoIosCheckmarkCircle } from 'react-icons/io';
 import StyledCheckbox from './styles.js';
 
 function Checkbox(props) {
-  const { labelName, checkedState } = props;
+  const { labelName, checkedState, onChange } = props;
   return (
     <StyledCheckbox {...props}>
       <i className="checkbox-icon">
@@ -15,7 +15,12 @@ function Checkbox(props) {
           <IoIosRadioButtonOff />
         )}
       </i>
-      <input type="checkbox" value={labelName} checked={checkedState} />
+      <input
+        type="checkbox"
+        value={labelName}
+        checked={checkedState}
+        onChange={onChange}
+      />
       <span
         className={
           checkedState === true ? 'checkbox-label strike' : 'checkbox-label'

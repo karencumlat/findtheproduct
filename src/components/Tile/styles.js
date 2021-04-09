@@ -1,8 +1,8 @@
 import styled, { css } from 'styled-components';
-import * as tokens from '../helpers/tokens';
+import TOKENS from '../Tokens';
 
 const StyledTiles = styled.div`
-  background-color: ${tokens.COLOR.GRAY};
+  background-color: ${TOKENS.COLOR.GRAY};
 `;
 
 export default StyledTiles;

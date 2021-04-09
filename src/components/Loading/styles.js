@@ -1,9 +1,9 @@
 import styled, { css } from 'styled-components';
-import * as tokens from '../helpers/tokens';
+import TOKENS from '../Tokens';
 
 const StyledLoading = styled.div`
   position: absolute;
-  background-color: ${tokens.COLOR.WHITE};
+  background-color: ${TOKENS.COLOR.WHITE};
   z-index: 100;
   display: flex;
   align-items: center;

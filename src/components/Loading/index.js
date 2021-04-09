@@ -1,4 +1,4 @@
-import gifs from '../helpers/loading';
+import gifs from '../../helpers/loading';
 import StyledLoading from './styles';
 
 function Loading() {

@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import * as tokens from '../helpers/tokens';
+import TOKENS from '../Tokens';
 
 const StyledCheckbox = styled.label`
   display: flex;
@@ -14,7 +14,7 @@ const StyledCheckbox = styled.label`
   }
 
   .checked {
-    color: ${tokens.COLOR.GREEN};
+    color: ${TOKENS.COLOR.GREEN};
   }
 
   .checkbox-icon {

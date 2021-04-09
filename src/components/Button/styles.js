@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import * as tokens from '../helpers/tokens';
+import TOKENS from '../Tokens';
 
 const StyledButton = styled.button`
   padding: 0.5em;
@@ -7,38 +7,38 @@ const StyledButton = styled.button`
   ${(props) =>
     props.primary &&
     css`
-      background: ${tokens.COLOR.GREEN};
-      color: ${tokens.COLOR.WHITE};
+      background: ${TOKENS.COLOR.GREEN};
+      color: ${TOKENS.COLOR.WHITE};
     `};
 
   ${(props) =>
     props.secondary &&
     css`
-      background: ${tokens.COLOR.BLACK};
-      color: ${tokens.COLOR.WHITE};
+      background: ${TOKENS.COLOR.BLACK};
+      color: ${TOKENS.COLOR.WHITE};
     `};
 
   ${(props) =>
     props.tertiary &&
     css`
-      background: ${tokens.COLOR.WHITE};
-      border: ${tokens.COLOR.BLACK} 1px solid;
-      color: ${tokens.COLOR.BLACK};
+      background: ${TOKENS.COLOR.WHITE};
+      border: ${TOKENS.COLOR.BLACK} 1px solid;
+      color: ${TOKENS.COLOR.BLACK};
 
       &:hover {
-        background: ${tokens.COLOR.GREEN};
-        color: ${tokens.COLOR.WHITE};
-        border-color: ${tokens.COLOR.GREEN};
+        background: ${TOKENS.COLOR.GREEN};
+        color: ${TOKENS.COLOR.WHITE};
+        border-color: ${TOKENS.COLOR.GREEN};
       }
     `};
 
   ${(props) =>
     props.ghost &&
     css`
-      color: ${tokens.COLOR.BLACK};
+      color: ${TOKENS.COLOR.BLACK};
 
       &:hover {
-        color: ${tokens.COLOR.GREEN};
+        color: ${TOKENS.COLOR.GREEN};
       }
     `};
 `;

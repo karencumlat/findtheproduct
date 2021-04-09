@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import * as tokens from '../components/helpers/tokens';
 
 import { device } from '../helpers/breakpoints';
 
