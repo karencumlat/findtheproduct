@@ -27,7 +27,7 @@ function ListBox(props) {
           <ListBoxOption
             onClick={onClick}
             option={option}
-            key={option.item}
+            key={option.id}
             sub={option.aisle}
           >
             {option.item} ({option.aisle})

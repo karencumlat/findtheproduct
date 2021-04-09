@@ -1,17 +1,14 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 
 import { IoMdSearch, IoMdClose } from 'react-icons/io';
 
 import StyledSearch, { Icon, SearchBox, StyledListBox } from './styles';
 
 import ListBox from '../ListBox';
-import Button from '../Button';
 import TextInput from '../TextInput';
 
 function Search(props) {
-  const { items, onClick } = props;
-
-  const searchRef = useRef();
+  const { items, onClick, placeholder } = props;
 
   const [searchTerm, setSearchTerm] = useState('');
   const [onFocus, setOnFocus] = useState(false);
@@ -30,24 +27,18 @@ function Search(props) {
     setSearchTerm('');
     setOnFocus(false);
   }
-
-  function focusSearch() {
-    searchRef.current.focus();
-  }
-
   return (
     <StyledSearch>
       <SearchBox>
         <TextInput
           type="text"
-          placeholder="find the product..."
+          placeholder={placeholder ? placeholder : 'find the product...'}
           className="search-box"
           value={searchTerm}
           onChange={editSearchTerm}
           onFocus={() => {
             setOnFocus(true);
           }}
-          // ref={searchRef}
           fullWidth
         ></TextInput>
         <Icon>

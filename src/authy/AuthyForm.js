@@ -70,14 +70,14 @@ function AuthyForm() {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="email"
+              placeholder="Email Address"
               fullWidth
             />
             <TextInput
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              placeholder="password"
+              placeholder="Password"
               fullWidth
             />
             <Button
