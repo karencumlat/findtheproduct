@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { IoIosRadioButtonOff, IoIosCheckmarkCircle } from 'react-icons/io';
 
-import './styles.css';
+import StyledCheckbox from './styles.js';
 
 function Checkbox(props) {
   const [checkedState, setCheckedState] = useState(false);
@@ -14,7 +14,7 @@ function Checkbox(props) {
 
   const { labelName } = props;
   return (
-    <label className="checkbox">
+    <StyledCheckbox>
       <i className="checkbox-icon">
         {checkedState === true ? (
           <i className="checked">
@@ -38,7 +38,7 @@ function Checkbox(props) {
       >
         {labelName}
       </span>
-    </label>
+    </StyledCheckbox>
   );
 }
 
