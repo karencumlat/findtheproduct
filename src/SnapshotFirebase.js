@@ -9,6 +9,7 @@ import { AuthContext } from './authy/Auth';
 
 import { ProductTile } from './styles.js';
 import Button from './components/Button';
+import Loading from './components/Loading';
 import Modal from './components/Modal';
 import Search from './components/Search';
 import Select from './components/Select';
@@ -109,6 +110,7 @@ function SnapshotFirebase() {
       aisle: item[0].aisle,
       item: item[0].item,
       id: item[0].id,
+      checkedState: false,
       owner,
       ownerEmail,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
@@ -132,7 +134,17 @@ function SnapshotFirebase() {
           doc.ref.delete();
         });
       });
-    window.location.reload();
+  }
+
+  function removeCheckedItems() {
+    shoppingListRef
+      .where('owner', '==', currentUserId)
+      .where('checkedState', '==', true)
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref.delete();
+        });
+      });
   }
 
   function deleteProduct(product) {
@@ -168,7 +180,21 @@ function SnapshotFirebase() {
         console.error(err);
       });
   }
-
+  function editCheckedState(e, product) {
+    const isChecked = e.target.checked;
+    const updatedproduct = {
+      checkedState: isChecked,
+      lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
+    };
+    console.log(product.id, isChecked);
+    setLoading();
+    shoppingListRef
+      .doc(product.id)
+      .update(updatedproduct)
+      .catch((err) => {
+        console.error(err);
+      });
+  }
   return (
     <>
       {currentUserEmail === process.env.REACT_APP_ADMIN_EMAIL ? (
@@ -223,8 +249,7 @@ function SnapshotFirebase() {
           ) : (
             ''
           )}
-          <hr />
-          {loading ? <h1>Loading...</h1> : null}
+          {loading ? <Loading /> : null}
           <ProductTile>
             {products.map((product) => (
               <Tile key={product.id} className="product-tile--item">
@@ -264,12 +289,15 @@ function SnapshotFirebase() {
             onClick={addToList}
             placeholder="+ Add an item"
           />
-          <hr />
-          {loading ? <h1>Loading...</h1> : null}
+          {loading ? <Loading /> : null}
           <ProductTile>
             {shoppinglist.map((product) => (
               <Tile key={product.id} className="product-tile--item">
-                <Checkbox labelName={product.item} />
+                <Checkbox
+                  checkedState={product.checkedState}
+                  labelName={product.item}
+                  onChange={(e) => editCheckedState(e, product)}
+                />
 
                 <span className="product-tile-buttons">
                   <Button onClick={() => deleteItem(product)} ghost>
@@ -279,8 +307,17 @@ function SnapshotFirebase() {
               </Tile>
             ))}
           </ProductTile>
-          <Button onClick={() => clearList()}>Clear list</Button>
-          <Button secondary>Remove checked items</Button>
+          <Button
+            onClick={() => {
+              clearList();
+              setTimeout(window.location.reload(), 3000);
+            }}
+          >
+            Clear list
+          </Button>
+          <Button secondary onClick={() => removeCheckedItems()}>
+            Remove checked items
+          </Button>
         </>
       ) : (
         ''
