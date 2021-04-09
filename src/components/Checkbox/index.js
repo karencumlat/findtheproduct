@@ -5,12 +5,18 @@ import { IoIosRadioButtonOff, IoIosCheckmarkCircle } from 'react-icons/io';
 import './styles.css';
 
 function Checkbox(props) {
-  const [isChecked, setIsChecked] = useState(false);
-  const { title } = props;
+  const [checkedState, setCheckedState] = useState(false);
+
+  function handleChecked(e) {
+    setCheckedState(!checkedState);
+    console.log(e.target.value);
+  }
+
+  const { labelName } = props;
   return (
-    <span className="checkbox" onClick={() => setIsChecked(!isChecked)}>
+    <label className="checkbox">
       <i className="checkbox-icon">
-        {isChecked ? (
+        {checkedState === true ? (
           <i className="checked">
             <IoIosCheckmarkCircle />
           </i>
@@ -20,13 +26,19 @@ function Checkbox(props) {
       </i>
       <input
         type="checkbox"
-        checked={isChecked}
-        onChange={() => setIsChecked(!isChecked)}
+        onChange={handleChecked}
+        checked={checkedState}
+        value={labelName}
+        {...props}
       />
-      <label className={isChecked ? 'checkbox-label strike' : 'checkbox-label'}>
-        {title}
-      </label>
-    </span>
+      <span
+        className={
+          checkedState === true ? 'checkbox-label strike' : 'checkbox-label'
+        }
+      >
+        {labelName}
+      </span>
+    </label>
   );
 }
 

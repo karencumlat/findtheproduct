@@ -1,10 +1,5 @@
-input[type='checkbox'] {
-  display: none;
-}
-
 .checkbox {
   display: flex;
-
   align-items: center;
   width: 100%;
   cursor: pointer;
@@ -14,6 +9,10 @@ input[type='checkbox'] {
   text-align: right;
   padding: 0 0.5em;
   font-size: 1.25em;
+}
+
+.checkbox-label {
+  margin-left: -1rem;
 }
 
 .checkbox-label.strike {
@@ -26,4 +25,9 @@ input[type='checkbox'] {
 
 .checkbox .checked {
   color: olivedrab;
+}
+input[type='checkbox'] {
+  opacity: 0;
+  width: 1em;
+  height: 1em;
 }
