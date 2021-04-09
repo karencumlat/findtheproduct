@@ -54,22 +54,25 @@ function SnapshotFirebase() {
 
   function getShoppingList() {
     setLoading(true);
-    shoppingListRef.orderBy('aisle', 'asc').onSnapshot((querySnapshot) => {
-      const items = [];
-      querySnapshot.forEach((doc) => {
-        items.push(doc.data());
+    setShoppingList([]);
+    shoppingListRef
+      .where('owner', '==', currentUserId)
+      .orderBy('aisle', 'asc')
+      .onSnapshot((querySnapshot) => {
+        const items = [];
+        querySnapshot.forEach((doc) => {
+          items.push(doc.data());
+        });
+        setShoppingList(items);
+        setLoading(false);
       });
-      setShoppingList(items);
-      setLoading(false);
-    });
   }
 
   useEffect(() => {
     getProducts();
     getShoppingList();
     // eslint-disable-next-line
-    console.log(aisle);
-  }, []);
+  }, [currentUser]);
 
   // ADD FUNCTION
   function addProduct() {
@@ -96,7 +99,6 @@ function SnapshotFirebase() {
 
   function addToList(e) {
     const itemID = e.target.value;
-    console.log(itemID);
 
     var item = products.filter((product) => product.id === itemID);
 
@@ -122,6 +124,17 @@ function SnapshotFirebase() {
   }
 
   //DELETE FUNCTION
+  function clearList() {
+    shoppingListRef
+      .where('owner', '==', currentUserId)
+      .onSnapshot((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          doc.ref.delete();
+        });
+      });
+    window.location.reload();
+  }
+
   function deleteProduct(product) {
     ref
       .doc(product.id)
@@ -216,7 +229,7 @@ function SnapshotFirebase() {
             {products.map((product) => (
               <Tile key={product.id} className="product-tile--item">
                 <div className="product-tile--name">
-                  {product.item}
+                  <p>{product.item}</p>
                   <span>{product.aisle}</span>
                 </div>
                 <span className="product-tile-buttons">
@@ -246,13 +259,17 @@ function SnapshotFirebase() {
         </>
       ) : currentUser !== null ? (
         <>
-          <Search items={products} onClick={addToList} />
+          <Search
+            items={products}
+            onClick={addToList}
+            placeholder="+ Add an item"
+          />
           <hr />
           {loading ? <h1>Loading...</h1> : null}
           <ProductTile>
             {shoppinglist.map((product) => (
               <Tile key={product.id} className="product-tile--item">
-                <Checkbox title={`${product.item}(${product.aisle})`} />
+                <Checkbox labelName={product.item} />
 
                 <span className="product-tile-buttons">
                   <Button onClick={() => deleteItem(product)} ghost>
@@ -262,6 +279,8 @@ function SnapshotFirebase() {
               </Tile>
             ))}
           </ProductTile>
+          <Button onClick={() => clearList()}>Clear list</Button>
+          <Button secondary>Remove checked items</Button>
         </>
       ) : (
         ''
