@@ -1,6 +1,8 @@
 import { useEffect, useState, createContext } from 'react';
 import firebase from '../firebase.js';
 
+import Loading from '../components/Loading';
+
 export const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
@@ -15,18 +17,7 @@ export const AuthProvider = ({ children }) => {
   }, []);
 
   if (loading) {
-    return (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          height: '80vh',
-        }}
-      >
-        <h1>Loading...</h1>
-      </div>
-    );
+    return <Loading />;
   }
 
   return (
