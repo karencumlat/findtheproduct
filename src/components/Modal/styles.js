@@ -11,6 +11,7 @@ const StyledModal = styled.div`
   display: flex;
   flex-direction: column;
   position: fixed;
+  z-index: 100;
 
   .modal--close-btn {
     position: absolute;

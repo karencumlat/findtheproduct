@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import TOKENS from '../Tokens';
 
 const StyledTiles = styled.div`

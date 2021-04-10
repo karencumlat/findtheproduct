@@ -1,4 +1,4 @@
-const size = {
+/** 
   mobileS: '320px',
   mobileM: '375px',
   mobileL: '425px',
@@ -6,7 +6,7 @@ const size = {
   laptop: '1024px',
   laptopL: '1440px',
   desktop: '2560px',
-};
+*/
 
 export const device = {
   small: `(max-width: 640px)`,

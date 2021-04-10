@@ -1,24 +1,11 @@
-import { useState } from 'react';
-
-import { IoIosAddCircle } from 'react-icons/io';
-
 import ListBoxOption from './ListBoxOption';
-import { AddIcon } from './styles.js';
 
 function ListBox(props) {
   const { options, onClick } = props;
-  const [addNewItem, setAddNewItem] = useState(false);
-  const [newItem, setNewItem] = useState(false);
 
   return options.length < 1 ? (
     <>
       <ListBoxOption option="No results found..." />
-      <ListBoxOption onClick={() => setNewItem(false)}>
-        <i className="add-new-item--icon">
-          <IoIosAddCircle />
-        </i>{' '}
-        Add New Item
-      </ListBoxOption>
     </>
   ) : (
     <>
@@ -34,12 +21,6 @@ function ListBox(props) {
           </ListBoxOption>
         );
       })}
-      {/* <ListBoxOption onClick={() => setAddNewItem(true)}>
-        <AddIcon>
-          <IoIosAddCircle />
-        </AddIcon>{' '}
-        Add New Item
-      </ListBoxOption> */}
     </>
   );
 }

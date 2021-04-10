@@ -6,7 +6,7 @@ const StyledListOption = styled.button`
   padding: 0.5em 0.5em 0.5em 1em;
   text-align: left;
   border-bottom: 1px solid ${TOKENS.COLOR.GRAY};
-  text-transform: capitalize;
+ 
   background-color: #fff;
   display: flex;
   align-items: center;

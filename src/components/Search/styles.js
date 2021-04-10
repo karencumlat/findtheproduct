@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components';
 
-import { device } from '../../helpers/breakpoints';
-
 export const SearchBox = styled.div`
   display: flex;
   flex-direction: row;
