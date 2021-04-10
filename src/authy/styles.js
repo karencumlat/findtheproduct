@@ -1,6 +1,4 @@
-import styled, { css } from 'styled-components';
-
-import { device } from '../helpers/breakpoints';
+import styled from 'styled-components';
 
 const StyledAuthyForm = styled.div`
   display: flex;
@@ -22,7 +20,7 @@ const StyledAuthyForm = styled.div`
     }
 
     h3 {
-      margin-bottom: 0;
+      margin-bottom: 0.25rem;
     }
 
     .authy-form--image {
