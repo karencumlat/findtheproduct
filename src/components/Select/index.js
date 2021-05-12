@@ -2,7 +2,7 @@ import StyledSelect from './styles';
 
 function Select(props) {
   const { options, onChange, selectedItem } = props;
-  console.log(selectedItem);
+
   return options.length < 1 ? (
     ''
   ) : (

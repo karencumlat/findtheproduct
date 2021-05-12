@@ -17,12 +17,9 @@ function Search(props) {
     setSearchTerm(e.target.value);
   }
 
-  function updateOptions() {
-    return items.filter((e) =>
-      e.item.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-  }
-
+  const options = items.filter((e) =>
+    e.item.toLowerCase().includes(searchTerm.toLowerCase())
+  );
   function clearSearch() {
     setSearchTerm('');
     setOnFocus(false);
@@ -54,7 +51,23 @@ function Search(props) {
 
       {onFocus === true ? (
         <StyledListBox>
-          <ListBox options={updateOptions()} onClick={onClick} />
+          <ListBox>
+            {options.length === 0 ? (
+              <ListBox.Option title="No results found..." option="" />
+            ) : (
+              options.map((option) => {
+                return (
+                  <ListBox.Option
+                    onClick={onClick}
+                    option={option}
+                    title={`${option.item} (${option.aisle})`}
+                    key={option.id}
+                    sub={option.aisle}
+                  />
+                );
+              })
+            )}
+          </ListBox>
         </StyledListBox>
       ) : null}
     </StyledSearch>
