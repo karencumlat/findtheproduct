@@ -18,6 +18,7 @@ import Search from '../../components/Search';
 import Select from '../../components/Select';
 import TextInput from '../../components/TextInput';
 import Tile from '../../components/Tile';
+import Toast from '../../components/Toast';
 
 function Admin() {
   const { currentUser } = useContext(AuthContext);
@@ -30,6 +31,7 @@ function Admin() {
   const [newItem, setNewItem] = useState(false);
   const [editItem, setEditItem] = useState({});
   const [editOpen, isEditOpen] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState({ isOpen: false });
 
   //REALTIME GET FUNCTION
   function getProducts() {
@@ -54,6 +56,10 @@ function Admin() {
     const owner = currentUser ? currentUser.uid : 'unknown';
     const ownerEmail = currentUser ? currentUser.email : 'unknown';
 
+    const currentProducts = products.filter(
+      (i) => i.aisle === aisle && i.item === item
+    );
+
     const newProduct = {
       aisle,
       item,
@@ -64,12 +70,18 @@ function Admin() {
       lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
     };
 
-    ref
-      .doc(newProduct.id)
-      .set(newProduct)
-      .catch((err) => {
-        console.error(err);
-      });
+    if (currentProducts.length === 0) {
+      ref
+        .doc(newProduct.id)
+        .set(newProduct)
+        .catch((err) => {
+          console.error(err);
+        });
+      setNewItem(false);
+      alert('item successfully added');
+    } else {
+      alert('item already exist');
+    }
   }
 
   //DELETE FUNCTION
@@ -80,6 +92,8 @@ function Admin() {
       .catch((err) => {
         console.error(err);
       });
+    setConfirmDelete({ isOpen: false });
+    alert('item successfully deleted');
   }
 
   // EDIT FUNCTION
@@ -89,17 +103,27 @@ function Admin() {
       aisle: aisle,
       lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    setLoading();
-    ref
-      .doc(product.id)
-      .update(updatedproduct)
-      .catch((err) => {
-        console.error(err);
-      });
+
+    const currentProducts = products.filter(
+      (i) => i.aisle === aisle && i.item === item
+    );
+
+    if (currentProducts.length === 0) {
+      setLoading();
+      ref
+        .doc(product.id)
+        .update(updatedproduct)
+        .catch((err) => {
+          console.error(err);
+        });
+      isEditOpen(false);
+      alert('item successfully updated');
+    } else {
+      alert('item already exist');
+    }
   }
 
   return (
-    //TODO: <Header> Title & Logout
     <>
       <Header>
         <h1>Find the product</h1>
@@ -107,6 +131,16 @@ function Admin() {
           <IoIosLogOut />
         </Button>
       </Header>
+      {confirmDelete.isOpen === true && (
+        <Modal
+          heading="Delete item"
+          onClose={() => setConfirmDelete({ isOpen: false })}
+          onSave={() => deleteProduct(confirmDelete.product)}
+          primaryBtn="Delete item"
+        >
+          This will remove the item on the list
+        </Modal>
+      )}
 
       <Search items={products} />
       {newItem === true ? (
@@ -184,7 +218,13 @@ function Admin() {
               >
                 <IoMdCreate />
               </Button>
-              <Button onClick={() => deleteProduct(product)} ghost>
+              <Button
+                onClick={() =>
+                  setConfirmDelete({ isOpen: true, product: product })
+                }
+                ghost
+                title="Are you sure you want to delete"
+              >
                 <IoMdTrash />
               </Button>
             </span>

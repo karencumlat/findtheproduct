@@ -7,12 +7,13 @@ import Logout from '../../authy/Logout';
 
 import { ProductTile } from './styles.js';
 import Button from '../../components/Button';
+import Checkbox from '../../components/Checkbox';
 import Header from '../../components/Header';
 import Loading from '../../components/Loading';
+import Modal from '../../components/Modal';
 import OverflowMenu from '../../components/OverflowMenu';
 import Search from '../../components/Search';
 import Tile from '../../components/Tile';
-import Checkbox from '../../components/Checkbox';
 
 function User() {
   const { currentUser } = useContext(AuthContext);
@@ -24,6 +25,7 @@ function User() {
   const [products, setProducts] = useState([]);
   const [shoppinglist, setShoppingList] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [confirmDelete, setConfirmDelete] = useState({ isOpen: false });
 
   //REALTIME GET FUNCTION
   function getProducts() {
@@ -60,8 +62,15 @@ function User() {
     // eslint-disable-next-line
   }, [currentUser]);
 
-  // ADD FUNCTION
+  const listFilter = shoppinglist.map((l) => {
+    return l.id;
+  });
 
+  const filteredProd = products.filter((product) => {
+    return listFilter.includes(product.id);
+  });
+
+  // ADD FUNCTION
   function addToList(e) {
     const itemID = e.target.value;
 
@@ -69,7 +78,6 @@ function User() {
 
     const owner = currentUser ? currentUser.uid : 'unknown';
     const ownerEmail = currentUser ? currentUser.email : 'unknown';
-
     const newProduct = {
       aisle: item[0].aisle,
       item: item[0].item,
@@ -98,6 +106,8 @@ function User() {
           doc.ref.delete();
         });
       });
+    setConfirmDelete({ isOpen: false });
+    alert('list successfully deleted');
   }
 
   function removeCheckedItems() {
@@ -127,7 +137,7 @@ function User() {
       checkedState: isChecked,
       lastUpdate: firebase.firestore.FieldValue.serverTimestamp(),
     };
-    console.log(product.id, isChecked);
+
     setLoading();
     shoppingListRef
       .doc(product.id)
@@ -149,8 +159,7 @@ function User() {
             label="Clear list"
             isDanger
             onClick={() => {
-              clearList();
-              setTimeout(window.location.reload(), 3000);
+              setConfirmDelete({ isOpen: true });
             }}
           />
           <OverflowMenu.Item label="Logout" hasDivider onClick={Logout} />
@@ -159,9 +168,23 @@ function User() {
       <Search
         items={products}
         onClick={addToList}
+        selected={shoppinglist}
         placeholder="+ Add an item"
       />
       {loading ? <Loading /> : null}
+      {confirmDelete.isOpen === true && (
+        <Modal
+          heading="Clear list"
+          onClose={() => setConfirmDelete({ isOpen: false })}
+          onSave={() => {
+            clearList();
+            setTimeout(window.location.reload(), 3000);
+          }}
+          primaryBtn="Clear list"
+        >
+          This will remove all items on your list.
+        </Modal>
+      )}
       <ProductTile>
         {shoppinglist.length < 1 ? (
           <div className="product-tile--empty">
@@ -180,7 +203,7 @@ function User() {
             <Tile key={product.id} className="product-tile--item">
               <Checkbox
                 checkedState={product.checkedState}
-                labelName={product.item}
+                labelName={`${product.item} (${product.aisle})`}
                 onChange={(e) => editCheckedState(e, product)}
               />
 
