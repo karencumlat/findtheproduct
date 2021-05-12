@@ -5,10 +5,12 @@ import StyledAuthyForm from './styles.js';
 
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
+import Toast from '../components/Toast';
 
 function AuthyForm() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [errMsg, setErrMsg] = useState('');
 
   const register = () => {
     firebase
@@ -31,6 +33,7 @@ function AuthyForm() {
       })
       .catch((err) => {
         console.error(err);
+        setErrMsg(err.message);
       });
   };
 
@@ -55,6 +58,7 @@ function AuthyForm() {
           </p>
         </div>
         <div className="authy-form--input">
+          {errMsg !== '' ? <Toast title={errMsg} /> : null}
           <TextInput
             type="email"
             value={email}

@@ -15,6 +15,12 @@ const StyledAuthyForm = styled.div`
     flex-direction: column;
     justify-content: center;
 
+    .authy-form--input {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
     .authy-form--input > * {
       margin: 0 0 1rem 0;
     }
