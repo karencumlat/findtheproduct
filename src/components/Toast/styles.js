@@ -15,8 +15,6 @@ const StyledNotification = styled.div`
   padding: 0.5em 1em;
   display: flex;
   align-items: center;
-  position: absolute;
-  z-index: 200;
 
   & > p {
     flex: 1;

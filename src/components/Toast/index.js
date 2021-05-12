@@ -4,27 +4,24 @@ import Button from '../Button';
 import StyledToast from './styles';
 
 function Toast(props) {
-  const { title, timeout } = props;
-  //TODO: kind error, success
+  const { title, timeout, autohide } = props;
+  //TODO: kind error, succes, onClick to close Toast
   const [display, setDisplay] = useState(true);
-
+  const time = timeout ? timeout : 3000;
   useEffect(() => {
-    setTimeout(() => {
-      setDisplay(false);
-    }, timeout);
+    autohide &&
+      setTimeout(() => {
+        setDisplay(false);
+      }, time);
   });
   return (
     <>
-      {display === true ? (
-        <StyledToast {...props}>
-          <p>{title}</p>
-          <Button ghost onClick={() => setDisplay(false)}>
-            <IoIosClose />
-          </Button>
-        </StyledToast>
-      ) : (
-        ''
-      )}
+      <StyledToast {...props}>
+        <p>{title}</p>
+        <Button ghost onClick={() => setDisplay(false)}>
+          <IoIosClose />
+        </Button>
+      </StyledToast>
     </>
   );
 }
