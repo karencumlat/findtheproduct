@@ -107,7 +107,6 @@ function User() {
         });
       });
     setConfirmDelete({ isOpen: false });
-    alert('list successfully deleted');
   }
 
   function removeCheckedItems() {
@@ -178,7 +177,7 @@ function User() {
           onClose={() => setConfirmDelete({ isOpen: false })}
           onSave={() => {
             clearList();
-            setTimeout(window.location.reload(), 3000);
+            alert('list successfully deleted');
           }}
           primaryBtn="Clear list"
         >
