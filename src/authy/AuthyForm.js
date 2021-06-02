@@ -51,13 +51,13 @@ function AuthyForm() {
             alt="watermelon illustration"
             className="authy--illustration"
           />
+        </div>
+        <div className="authy-form--input">
           <h3>Find the product.</h3>
           <p>
             Add the product and you'll only need to make one loop to get your
             entire haul.
           </p>
-        </div>
-        <div className="authy-form--input">
           {errMsg !== '' ? <Toast title={errMsg} /> : null}
           <TextInput
             type="email"

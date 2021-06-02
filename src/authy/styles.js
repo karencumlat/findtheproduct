@@ -5,12 +5,11 @@ const StyledAuthyForm = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 4em;
+  height: 100%;
 
   .authy-form {
     width: 100%;
-    height: 100%;
-    min-height: 100vh;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -31,6 +30,8 @@ const StyledAuthyForm = styled.div`
 
     .authy-form--image {
       margin: 0 0 1rem 0;
+      -webkit-transform: scaleX(-1);
+      transform: scaleX(-1);
     }
 
     .authy--illustration {
@@ -67,6 +68,26 @@ const StyledAuthyForm = styled.div`
 
   .authy--logout-btn {
     font-size: 2em;
+  }
+
+  @media (min-width: 768px) {
+    .authy-form {
+      flex-direction: row;
+      height: 90%;
+    }
+
+    .authy-form--image,
+    .authy-form--input {
+      flex: 1;
+
+      .authy--illustration {
+        height: 90%;
+      }
+    }
+
+    .authy-form--input {
+      padding: 0 10rem;
+    }
   }
 `;
 
