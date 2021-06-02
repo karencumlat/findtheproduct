@@ -22,7 +22,7 @@ export const ProductTile = styled.div`
     text-align: center;
   }
   .user--illustration {
-    width: 80%;
+    height: 25em;
     margin: 2em auto;
     display: block;
   }
