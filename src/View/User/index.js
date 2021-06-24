@@ -62,14 +62,6 @@ function User() {
     // eslint-disable-next-line
   }, [currentUser]);
 
-  const listFilter = shoppinglist.map((l) => {
-    return l.id;
-  });
-
-  const filteredProd = products.filter((product) => {
-    return listFilter.includes(product.id);
-  });
-
   // ADD FUNCTION
   function addToList(e) {
     const itemID = e.target.value;
@@ -149,7 +141,7 @@ function User() {
     <>
       <Header>
         <h1>Shopping list</h1>
-        <OverflowMenu>
+        <OverflowMenu aria-label="Overflow Menu">
           <OverflowMenu.Item
             label="Remove checked items"
             onClick={() => removeCheckedItems()}
@@ -207,7 +199,11 @@ function User() {
               />
 
               <span className="product-tile-buttons">
-                <Button onClick={() => deleteItem(product)} ghost>
+                <Button
+                  aria-label="Delete"
+                  onClick={() => deleteItem(product)}
+                  ghost
+                >
                   <IoMdTrash />
                 </Button>
               </span>

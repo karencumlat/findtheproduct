@@ -18,7 +18,6 @@ import Search from '../../components/Search';
 import Select from '../../components/Select';
 import TextInput from '../../components/TextInput';
 import Tile from '../../components/Tile';
-import Toast from '../../components/Toast';
 
 function Admin() {
   const { currentUser } = useContext(AuthContext);
@@ -127,7 +126,7 @@ function Admin() {
     <>
       <Header>
         <h1>Find the product</h1>
-        <Button onClick={Logout}>
+        <Button onClick={Logout} aria-label="Logout">
           <IoIosLogOut />
         </Button>
       </Header>
@@ -208,6 +207,7 @@ function Admin() {
             </div>
             <span className="product-tile-buttons">
               <Button
+                aria-label="Edit"
                 onClick={() => {
                   setEditItem(product);
                   setItem(product.item);
@@ -219,6 +219,7 @@ function Admin() {
                 <IoMdCreate />
               </Button>
               <Button
+                aria-label="Delete"
                 onClick={() =>
                   setConfirmDelete({ isOpen: true, product: product })
                 }
