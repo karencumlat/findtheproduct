@@ -137,7 +137,7 @@ function Admin() {
           onSave={() => deleteProduct(confirmDelete.product)}
           primaryBtn="Delete item"
         >
-          This will remove the item on the list
+          <p>This will remove the item on the list</p>
         </Modal>
       )}
 

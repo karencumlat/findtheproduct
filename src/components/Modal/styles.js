@@ -4,6 +4,7 @@ import TOKENS from '../Tokens';
 const StyledModal = styled.div`
   background: ${TOKENS.COLOR.WHITE};
   width: 90%;
+  max-width: 600px;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

@@ -173,7 +173,7 @@ function User() {
           }}
           primaryBtn="Clear list"
         >
-          This will remove all items on your list.
+          <p> This will remove all items on your list.</p>
         </Modal>
       )}
       <ProductTile>
