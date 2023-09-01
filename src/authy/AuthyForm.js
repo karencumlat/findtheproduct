@@ -1,11 +1,14 @@
 import { useState } from 'react';
 import firebase from '../firebase';
+import { signInWithGoogle } from '../firebase';
 
 import StyledAuthyForm from './styles.js';
 
 import Button from '../components/Button';
 import TextInput from '../components/TextInput';
 import Toast from '../components/Toast';
+
+import { FcGoogle } from 'react-icons/fc';
 
 function AuthyForm() {
   const [email, setEmail] = useState('');
@@ -84,6 +87,9 @@ function AuthyForm() {
           <span className="authy-or">or</span>
           <Button onClick={register} tertiary fullWidth>
             Register
+          </Button>
+          <Button secondary fullWidth onClick={signInWithGoogle}>
+            <FcGoogle /> Sign in with Google
           </Button>
         </div>
       </div>
